@@ -24,12 +24,16 @@ if uploaded_file is not None:
     st.write(filtered_df)
 
     st.subheader("Plot Data")
-    x_column = st.selectbox("Select x-axis column", columns)
-    y_column = st.selectbox("Select y-axis column", columns)
+    if not filtered_df.empty:
+        x_column = st.selectbox("Select x-axis column", columns)
+        y_column = st.selectbox("Select y-axis column", columns)
 
-    if st.button("Generate Plot"):
-        st.line_chart(filtered_df.set_index(x_column)[y_column])
+        if st.button("Generate Plot"):
+            st.line_chart(filtered_df.set_index(x_column)[y_column])
+    else:
+        st.write("Filtered data is empty. Please adjust your filter.")
 else:
-        st.write("Waiting for file upload...")
+    st.write("Waiting on a file upload.....")
+
 
         
