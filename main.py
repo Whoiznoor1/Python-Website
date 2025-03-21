@@ -14,9 +14,10 @@ if uploaded_file is not None:
     st.header("Data Summary")
     st.write(df.describe())
 
-    st.subheader("Filter Data")
-    columns = df.columns.tolist()
+    st.subheader("Data Filter")
+    columns = df.columns.to_list()
     selected_column = st.selectbox("Select column to filter by", columns)
+    
     unique_values = df[selected_column].unique()
     selected_value = st.selectbox("Select value", unique_values)
 
